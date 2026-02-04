@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+import 'dart:math';
+
+final randomizer = Random();
+
+class DiceRoller extends StatefulWidget {
+  const DiceRoller({super.key});
+
+  @override
+  State<DiceRoller> createState() {
+    return _DiceRollerState();
+  }
+}
+
+class _DiceRollerState extends State<DiceRoller> {
+  var currentDiceRoll = 2;
+
+  void rollDice() {
+    currentDiceRoll = randomizer.nextInt(6) + 1;
+    setState(() {});
+  }
+
+  @override
+  Widget build(context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Image.asset('assets/images/$currentDiceRoll.jpg', width: 200),
+        const SizedBox(height: 20),
+        TextButton(
+          onPressed: rollDice,
+          style: TextButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 255, 215, 225),
+            foregroundColor: const Color.fromARGB(255, 194, 102, 122),
+          ),
+          child: const Text('Roll Dice'),
+        ),
+      ],
+    );
+  }
+}
